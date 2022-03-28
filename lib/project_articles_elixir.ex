@@ -2,7 +2,7 @@ defmodule ProjectArticlesElixir do
   alias ProjectArticlesElixir.Cli
 
   @moduledoc """
-  Este projeto tem como fim fazer uma conexão com a API do Dev.to alêm de facilitar a bolaboração de todo o squad na produção de novos artigos
+  Este projeto tem como fim fazer uma conexão com a API do Dev.to alêm de facilitar a colaboração de todo o squad na produção de novos artigos
   """
 
   @api_key ProjectArticlesElixir.Helper.api_key_string()
