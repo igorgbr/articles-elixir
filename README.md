@@ -1,3 +1,5 @@
+[![wakatime](https://wakatime.com/badge/user/ae074563-da22-43df-b93c-58927224dea1/project/f854f409-af19-40b9-8776-9ea3ce8206b3.svg)](https://wakatime.com/badge/user/ae074563-da22-43df-b93c-58927224dea1/project/f854f409-af19-40b9-8776-9ea3ce8206b3) [![wakatime](https://wakatime.com/badge/github/igorgbr/articles.svg)](https://wakatime.com/badge/github/igorgbr/articles)
+
 ## Articles
 
 I create this repo to organize and search for collabs before publish articles.
