@@ -33,20 +33,16 @@ O Projeto tem como objetivo tornar mais facil o processo de colaboração e publ
 
 ## Configuração
 
-Crie um arquivo helper.js com essa estrutura (opcional):
+Crie um arquivo helper.ex com essa estrutura (opcional):
 
-```javascript
-const APIKEY = '<SUA_KEY_DO_DEV.TO>';
-const pythonPath = './Python/';
-const elixirPath = './Elixir/';
-const generalPath = './General';
+```elixir
+defmodule ProjectArticlesElixir.Helper do
 
-module.exports = {
-  APIKEY,
-  pythonPath,
-  elixirPath,
-  generalPath,
-};
+  def api_key_string() do
+    "<API_TOKEN>"
+  end
+
+end
 ```
 
 P.S: você pode adaptar os PATHS da forma que achar melhor.
@@ -54,7 +50,7 @@ P.S: você pode adaptar os PATHS da forma que achar melhor.
 ## Como funciona
 Se você quiser transferir um artigo do Medium para o Dev.to deve primeiro converter para markdown, você pode utilizar o script 'medium_to_markdown.js'
 
-### Como converter um artigo do Medium para Markdown
+<!-- ### Como converter um artigo do Medium para Markdown
 
 É nescessário ter o Node instalado.
 
@@ -65,55 +61,54 @@ clone o repositorio
 
 Instale as bibliotecas
 ```Shell
-    npm install
+    mix deps.get
 ```
 
-Substitua a URL na linha 5
-```javascript
-    const URL = 'https://medium.com/<@seu_usuario>/<seu_artigo>';
-```
-
-Rode o Script
+Rode o projeto no MIX
 ```Shell
-    npm run medium-to-md
-```
+    iex -S mix
+``` -->
 
-Será gerado no caminho escolhido um arquivo de nome igual ao titulo do artigo no formato MD.
+<!-- Será gerado no caminho escolhido um arquivo de nome igual ao titulo do artigo no formato MD. -->
 
 
 ### Como fazer o deploy para o Dev.to
 [Documentação da API](https://developers.forem.com/api/#section/Authentication)
 
-Instale a biblioteca
+Instale as dependencias
 ```Shell
-    npm install
+    mix deps.get
 ```
-Rode o Script
+Rode o iex com Mix
 ```Shell
-    npm start
+    iex -S mix
 ```
-Insira seu nome de usuario do dev.to
+
+Chame o módulo e a função principal no iex:
+O nome do arquivo deve ser sem traços ou caracteres especiais.
+o arquivo deve estar localizado na raiz do projeto.
+
+```elixir
+    ProjectArticlesElixir.main("nome_do_arquivo.md")
+```
+
+
+Insira seu nome de usuario do dev.to (obrigatório)
 ```Shell
     nome de usuario: igorgbr
 ```
 
-Insira o ID da organização (Se não for postar na organização pressione "ENTER")
+Insira o ID da organização (Se não for postar na organização digite 0) (obrigatório)
 ```Shell
     ID da organização: 4563
 ```
 
-Insira o nome do arquivo que ira publicar (com a extensão)
-O arquivo deve estar na raiz do projeto (sem caracteres especiais).
-```Shell
-    filename: meu_artigo.md
-```
-
-Insira o titulo do seu artigo
+Insira o titulo do seu artigo (obrigatório)
 ```Shell
     Titulo do artigo: Meu artigo TOP
 ```
 
-Insira o titulo da série (Se não fizer parte de uma série pressione "ENTER")
+Insira o titulo da série (Se não fizer parte de uma série pressione "ENTER") (opcional)
 ```Shell
     Titulo da série: Sequencia de artigos top
 ```
