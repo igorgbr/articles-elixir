@@ -14,9 +14,9 @@ defmodule ProjectArticlesElixir do
     filename
     |> File.read!()
     |> create_body(data)
-    |> input_options(data.organization_id, data.series)
+    |> input_options(data)
     |> Jason.encode!()
-    |> post_article(data.username)
+    |> post_article(data)
   end
 
   defp do_questions({:ok, _content}, filename) do
@@ -55,23 +55,24 @@ defmodule ProjectArticlesElixir do
     }
   end
 
-  defp input_options(body, organization_id, series) do
+  defp input_options(body, %{organization_id: organization_id, series: series}) do
     body
-    |> input_organization_id_if_exist(organization_id)
-    |> input_series_if_exist(series, String.length(series))
+    |> input_organization_id(organization_id)
+    |> input_series(series, String.length(series))
   end
 
-  defp input_organization_id_if_exist(body, organization_id) when organization_id > 0,
-    do: Map.put_new(body, "organization_id", organization_id)
 
-  defp input_organization_id_if_exist(body, _data), do: body
+  defp input_organization_id(body, organization_id) when is_number(organization_id),
+  do: Map.put_new(body, "organization_id", organization_id)
 
-  defp input_series_if_exist(body, series, series_length) when series_length > 0,
+  defp input_organization_id(body, nil), do: body
+
+  defp input_series(body, series, series_length) when series_length > 0,
     do: Map.put_new(body, "series", series)
 
-  defp input_series_if_exist(body, _series, _series_length), do: body
+  defp input_series(body, _series, _series_length), do: body
 
-  def post_article(body, username) do
+  def post_article(body, %{username: username}) do
     IO.inspect(body)
     headers = [{:"Content-type", "application/json"}, {:"api-key", @api_key}]
 

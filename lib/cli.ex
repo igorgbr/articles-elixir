@@ -4,18 +4,29 @@ defmodule ProjectArticlesElixir.Cli do
     IO.puts("File: #{filename}")
     username = ExPrompt.string_required("Username: ")
     title = ExPrompt.string_required("Titulo do Artigo: ")
-    organization_id_string = ExPrompt.string_required("Organization id: ")
+    organization_id_string = ExPrompt.string("Organization id: ")
     serie_name = ExPrompt.string("Serie name: ")
     tags = ExPrompt.string("Tags: ")
     IO.puts("================================================")
-
     IO.puts("============== Dados Enviados ==================")
-    organization_id =
-      organization_id_string
-      |> String.trim()
-      |> String.to_integer()
+
+
+    organization_id = parse_organization_id(organization_id_string)
 
     fetch_data(username, title, filename, tags, organization_id, serie_name)
+  end
+
+  defp parse_organization_id(organization_id_string) do
+    case organization_id_string do
+     "" -> nil
+     _ -> do_parse(organization_id_string)
+    end
+  end
+
+  defp do_parse(organization_id_string) do
+    organization_id_string
+    |> String.trim()
+    |> String.to_integer()
   end
 
   defp fetch_data(username, title, filename, tags, organization_id, serie_name) do
