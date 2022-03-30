@@ -100,7 +100,7 @@ Insira seu nome de usuario do dev.to (obrigatório)
     nome de usuario: igorgbr
 ```
 
-Insira o ID da organização (Se não for postar na organização digite 0) (obrigatório)
+Insira o ID da organização (Se não fizer parte de uma organização pressione "ENTER") (obrigatório)
 ```Shell
     ID da organização: 4563
 ```
